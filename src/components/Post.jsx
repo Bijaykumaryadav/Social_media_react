@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { MdDelete } from "react-icons/md";
 import { PostList } from "../store/post-list-store";
+
 const Post = ({ post }) => {
   const { deletePost } = useContext(PostList);
   return (
@@ -24,7 +25,7 @@ const Post = ({ post }) => {
           </span>
         ))}
         <div className="alert alert-success reactions" role="alert">
-          This post has been reacted by {post.reactions} people
+          This post has been reacted to by {post.reactions.likes} people with {post.reactions.dislikes} dislikes
         </div>
       </div>
     </div>
