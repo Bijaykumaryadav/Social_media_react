@@ -23,25 +23,25 @@ const PostListProvider = ({ children }) => {
   const [postList, dispatchPostList] = useReducer(PostListReducer, []);
 
   // note: while using the usestate always use the big braces
-  const [fetching, setFetching] = useState(false);
+  // const [fetching, setFetching] = useState(false);
 
-  useEffect(() => {
-    setFetching(true);
+  // useEffect(() => {
+  //   setFetching(true);
 
-    const controller = new AbortController();
-    const signal = controller.signal;
+  //   const controller = new AbortController();
+  //   const signal = controller.signal;
 
-    fetch("https://dummyjson.com/posts", { signal })
-      .then((res) => res.json())
-      .then((data) => {
-        addInitialPosts(data.posts);
-        setFetching(false);
-      });
+  //   fetch("https://dummyjson.com/posts", { signal })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       addInitialPosts(data.posts);
+  //       setFetching(false);
+  //     });
 
-    return () => {
-      controller.abort();
-    };
-  }, []);
+  //   return () => {
+  //     controller.abort();
+  //   };
+  // }, []);
 
   const addPost = (post) => {
     dispatchPostList({
@@ -71,7 +71,7 @@ const PostListProvider = ({ children }) => {
   // const sortedArr = useMemo( () => arr.sort() , [arr] );
 
   return (
-    <PostList.Provider value={{ postList, fetching, addPost, deletePost }}>
+    <PostList.Provider value={{ postList, addPost, deletePost }}>
       {children}
     </PostList.Provider>
   );
